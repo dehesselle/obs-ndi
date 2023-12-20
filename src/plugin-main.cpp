@@ -35,6 +35,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include <QMessageBox>
 #include <QString>
 #include <QStringList>
+#include <QStandardPaths>
 
 #include "plugin-main.h"
 #include "main-output.h"
@@ -247,6 +248,7 @@ const NDIlib_v4 *load_ndilib()
 #if defined(__linux__) || defined(__APPLE__)
 	locations << "/usr/lib";
 	locations << "/usr/local/lib";
+	locations << QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/obs-studio/plugins";
 #endif
 	for (QString location : locations) {
 		path = QDir::cleanPath(
